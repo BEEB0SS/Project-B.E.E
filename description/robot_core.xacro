@@ -1,0 +1,467 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+
+    
+    <xacro:include filename="inertial_macros.xacro"/>
+
+    <!--COLORS -->
+    
+    <material name="gray">
+        <color rgba="0 0 0 0.17"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 0.1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+    <!--BASE LINK -->
+
+    <link name="base_link">
+
+    </link>
+
+    <!--CHASSIS LINK -->
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0.060325"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.3048 0.381 0.12065"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.3048 0.381 0.12065"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5"/>
+    </link>
+
+    <joint name="left_front_chassis_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="left_bar_chassis"/>
+        <origin xyz="0.0762 0.22225 0"/>
+    </joint>
+
+    <link name="left_bar_chassis">
+        <visual>
+            <origin xyz="-0.13335 0 0"/>
+            <geometry>
+                <box size="0.3048 0.0381 0.0381"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="-0.13335 0 0"/>
+            <geometry>
+                <box size="0.3048 0.0381 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_front_chassis_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="right_bar_chassis"/>
+        <origin xyz="0.0762 -0.22225 0"/>
+    </joint>
+
+    <link name="right_bar_chassis">
+        <visual>
+            <origin xyz="-0.13335 0 0"/>
+            <geometry>
+                <box size="0.3048 0.0381 0.0381"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="-0.13335 0 0"/>
+            <geometry>
+                <box size="0.3048 0.0381 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--BACK WHEELS -->
+
+    <joint name="left_back_corner_motor_joint" type="continuous">
+        <parent link="left_bar_chassis"/>
+        <child link="left_back_corner_motor"/>
+        <origin xyz="-0.2794 0 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_back_corner_motor">
+        <visual>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_back_corner_motor_joint" type="continuous">
+        <parent link="right_bar_chassis"/>
+        <child link="right_back_corner_motor"/>
+        <origin xyz="-0.2794 0 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_back_corner_motor">
+        <visual>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_back_wheel_joint" type= "continuous">
+        <parent link="left_back_corner_motor"/>
+        <child link="left_back_wheel"/>
+        <origin xyz="0 0.1905 0" rpy="0 0 -${pi/2}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_back_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_back_wheel_joint" type= "continuous">
+        <parent link="right_back_corner_motor"/>
+        <child link="right_back_wheel"/>
+        <origin xyz="0 0.1905 0" rpy="0 0 -${pi/2}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_back_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--MIDDLE WHEELS -->
+
+    <joint name="left_middle_diagonal_joint" type="fixed">
+        <parent link="left_bar_chassis"/>
+        <child link="left_middle_diagonal"/>
+        <origin xyz="0.1143 0 -0.1016" rpy="0 -${pi/4} 0"/>
+    </joint>
+
+    <link name="left_middle_diagonal">
+        <visual>
+            <origin xyz="0 0 0.08255"/>
+            <geometry>
+                <box size="0.0381 0.0381 0.1651"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.08255"/>
+            <geometry>
+                <box size="0.0381 0.0381 0.1651"/>
+            </geometry>   
+        </collision>
+    </link>
+
+    <joint name="right_middle_diagonal_joint" type="fixed">
+        <parent link="right_bar_chassis"/>
+        <child link="right_middle_diagonal"/>
+        <origin xyz="0.1143 0 -0.1016" rpy="0 -${pi/4} 0"/>
+    </joint>
+
+    <link name="right_middle_diagonal">
+        <visual>
+            <origin xyz="0 0 0.08255"/>
+            <geometry>
+                <box size="0.0381 0.0381 0.1651"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.08255"/>
+            <geometry>
+                <box size="0.0381 0.0381 0.1651"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_middle_balancer_joint" type="continuous">
+        <parent link="left_middle_diagonal"/>
+        <child link="left_middle_balancer"/>
+        <origin xyz="0 0 0" rpy="0 ${pi} 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_middle_balancer">
+        <visual>
+            <origin xyz="-0.00635 0 0"/>
+            <geometry>
+                <box size="0.27305 0.0381 0.0381"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="-0.00635 0 0"/>
+            <geometry>
+                <box size="0.27305 0.0381 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_middle_balancer_joint" type="continuous">
+        <parent link="right_middle_diagonal"/>
+        <child link="right_middle_balancer"/>
+        <origin xyz="0 0 0" rpy="0 ${pi} 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_middle_balancer">
+        <visual>
+            <origin xyz="-0.00635 0 0"/>
+            <geometry>
+                <box size="0.27305 0.0381 0.0381"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="-0.00635 0 0"/>
+            <geometry>
+                <box size="0.27305 0.0381 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_middle_wheel_joint" type= "continuous">
+        <parent link="left_middle_balancer"/>
+        <child link="left_middle_wheel"/>
+        <origin xyz="0.1397 0.01905 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_middle_wheel">
+        <visual>
+            <origin xyz="0 0 0.0445"/>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.0445"/>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_middle_wheel_joint" type= "continuous">
+        <parent link="right_middle_balancer"/>
+        <child link="right_middle_wheel"/>
+        <origin xyz="0.1397 -0.01905 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_middle_wheel">
+        <visual>
+            <origin xyz="0 0 -0.0445"/>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.0445"/>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--FRONT WHEELS -->
+
+    <joint name="left_front_bar_joint" type= "fixed">
+        <parent link="left_middle_balancer"/>
+        <child link="left_front_bar"/>
+        <origin xyz="-0.1397 0 0" rpy="0 ${5*pi/4} 0"/>
+    </joint>
+
+    <link name="left_front_bar">
+        <visual>
+            <origin xyz="0.066675 0 0"/>
+            <geometry>
+                <box size="0.17145 0.0381 0.0381"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0.066675 0 0"/>
+            <geometry>
+                <box size="0.17145 0.0381 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_front_bar_joint" type= "fixed">
+        <parent link="right_middle_balancer"/>
+        <child link="right_front_bar"/>
+        <origin xyz="-0.1397 0 0" rpy="0 ${5*pi/4} 0"/>
+    </joint>
+
+    <link name="right_front_bar">
+        <visual>
+            <origin xyz="0.066675 0 0"/>
+            <geometry>
+                <box size="0.17145 0.0381 0.0381"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0.066675 0 0"/>
+            <geometry>
+                <box size="0.17145 0.0381 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_front_corner_motor_joint" type="continuous">
+        <parent link="left_front_bar"/>
+        <child link="left_front_corner_motor"/>
+        <origin xyz="0.13335 0 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_front_corner_motor">
+        <visual>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_front_corner_motor_joint" type="continuous">
+        <parent link="right_front_bar"/>
+        <child link="right_front_corner_motor"/>
+        <origin xyz="0.13335 0 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_front_corner_motor">
+        <visual>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0.05715 0"/>
+            <geometry>
+                <box size="0.0381 0.1905 0.0381"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="left_front_wheel_joint" type= "continuous">
+        <parent link="left_front_corner_motor"/>
+        <child link="left_front_wheel"/>
+        <origin xyz="0 0.1905 0" rpy="0 0 -${pi/2}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_front_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_front_wheel_joint" type= "continuous">
+        <parent link="right_front_corner_motor"/>
+        <child link="right_front_wheel"/>
+        <origin xyz="0 0.1905 0" rpy="0 0 -${pi/2}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_front_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.0762" length="0.0889"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+
+
+
+
+
+</robot>
