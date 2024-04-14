@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
 
-    
+    <!--FILES -->
+
     <xacro:include filename="inertial_macros.xacro"/>
 
     <!--COLORS -->
@@ -38,7 +39,6 @@
 
     <link name="chassis">
         <visual>
-            <origin xyz="0 0 0"/>
             <geometry>
                 <box size="0.3048 0.381 0.12065"/>
             </geometry>
@@ -49,7 +49,9 @@
                 <box size="0.3048 0.381 0.12065"/>
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.5"/>
+        <xacro:inertial_box mass="1.3040781" x="0.3048" y="0.381" z="0.12065">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="left_front_chassis_joint" type="fixed">
@@ -72,6 +74,9 @@
                 <box size="0.3048 0.0381 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.2857632" x="0.3048" y="0.0381" z="0.0381">
+            <origin xyz="-0.13335 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="right_front_chassis_joint" type="fixed">
@@ -94,6 +99,9 @@
                 <box size="0.3048 0.0381 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.2857632" x="0.3048" y="0.0381" z="0.0381">
+            <origin xyz="-0.13335 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <!--BACK WHEELS -->
@@ -119,6 +127,9 @@
                 <box size="0.0381 0.1905 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.816239471" x="0.0381" y="0.1905" z="0.0381">
+            <origin xyz="0 0.05715 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="right_back_corner_motor_joint" type="continuous">
@@ -142,6 +153,9 @@
                 <box size="0.0381 0.1905 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.816239471" x="0.0381" y="0.1905" z="0.0381">
+            <origin xyz="0 0.05715 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="left_back_wheel_joint" type= "continuous">
@@ -163,6 +177,9 @@
                 <cylinder radius="0.0762" length="0.0889"/>
             </geometry>
         </collision>
+        <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
+            <origin xyz="0 0 0" rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <joint name="right_back_wheel_joint" type= "continuous">
@@ -184,6 +201,10 @@
                 <cylinder radius="0.0762" length="0.0889"/>
             </geometry>
         </collision>
+        <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
+            <origin xyz="0 0 0" rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
+
     </link>
 
     <!--MIDDLE WHEELS -->
@@ -208,6 +229,9 @@
                 <box size="0.0381 0.0381 0.1651"/>
             </geometry>   
         </collision>
+        <xacro:inertial_box mass="0.10296547" x="0.0381" y="0.0381" z="0.1651">
+            <origin xyz="0 0 0.08255" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="right_middle_diagonal_joint" type="fixed">
@@ -230,6 +254,9 @@
                 <box size="0.0381 0.0381 0.1651"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.10296547" x="0.0381" y="0.0381" z="0.1651">
+            <origin xyz="0 0 0.08255" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="left_middle_balancer_joint" type="continuous">
@@ -253,6 +280,9 @@
                 <box size="0.27305 0.0381 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.469818593774" x="0.27305" y="0.0381" z="0.0381">
+            <origin xyz="-0.00635 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="right_middle_balancer_joint" type="continuous">
@@ -276,6 +306,9 @@
                 <box size="0.27305 0.0381 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.469818593774" x="0.27305" y="0.0381" z="0.0381">
+            <origin xyz="-0.00635 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="left_middle_wheel_joint" type= "continuous">
@@ -299,6 +332,9 @@
                 <cylinder radius="0.0762" length="0.0889"/>
             </geometry>
         </collision>
+        <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
+            <origin xyz="0 0 0.0445" rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <joint name="right_middle_wheel_joint" type= "continuous">
@@ -322,6 +358,9 @@
                 <cylinder radius="0.0762" length="0.0889"/>
             </geometry>
         </collision>
+        <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
+            <origin xyz="0 0 0.0445" rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <!--FRONT WHEELS -->
@@ -346,6 +385,9 @@
                 <box size="0.17145 0.0381 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.14424237" x="0.17145" y="0.0381" z="0.0381">
+            <origin xyz="0.066675 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="right_front_bar_joint" type= "fixed">
@@ -368,6 +410,9 @@
                 <box size="0.17145 0.0381 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.14424237" x="0.17145" y="0.0381" z="0.0381">
+            <origin xyz="0.066675 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="left_front_corner_motor_joint" type="continuous">
@@ -391,6 +436,9 @@
                 <box size="0.0381 0.1905 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.816239471" x="0.0381" y="0.1905" z="0.0381">
+            <origin xyz="0 0.05715 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="right_front_corner_motor_joint" type="continuous">
@@ -414,6 +462,9 @@
                 <box size="0.0381 0.1905 0.0381"/>
             </geometry>
         </collision>
+        <xacro:inertial_box mass="0.816239471" x="0.0381" y="0.1905" z="0.0381">
+            <origin xyz="0 0.05715 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <joint name="left_front_wheel_joint" type= "continuous">
@@ -435,6 +486,9 @@
                 <cylinder radius="0.0762" length="0.0889"/>
             </geometry>
         </collision>
+        <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
+            <origin xyz="0 0 0" rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <joint name="right_front_wheel_joint" type= "continuous">
@@ -456,6 +510,9 @@
                 <cylinder radius="0.0762" length="0.0889"/>
             </geometry>
         </collision>
+        <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
+            <origin xyz="0 0 0" rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
 
