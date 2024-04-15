@@ -54,6 +54,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="left_front_chassis_joint" type="fixed">
         <parent link="chassis"/>
         <child link="left_bar_chassis"/>
@@ -79,6 +83,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="left_bar_chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="right_front_chassis_joint" type="fixed">
         <parent link="chassis"/>
         <child link="right_bar_chassis"/>
@@ -103,6 +111,10 @@
             <origin xyz="-0.13335 0 0" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+    <gazebo reference="right_bar_chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <!--BACK WHEELS -->
 
@@ -132,6 +144,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="left_back_corner_motor">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <joint name="right_back_corner_motor_joint" type="continuous">
         <parent link="right_bar_chassis"/>
         <child link="right_back_corner_motor"/>
@@ -158,6 +174,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="right_back_corner_motor">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <joint name="left_back_wheel_joint" type= "continuous">
         <parent link="left_back_corner_motor"/>
         <child link="left_back_wheel"/>
@@ -182,6 +202,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="left_back_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="right_back_wheel_joint" type= "continuous">
         <parent link="right_back_corner_motor"/>
         <child link="right_back_wheel"/>
@@ -204,8 +228,11 @@
         <xacro:inertial_cylinder mass="0.272155" length="0.0889" radius="0.0762">
             <origin xyz="0 0 0" rpy = "0 0 0"/>
         </xacro:inertial_cylinder>
-
     </link>
+
+    <gazebo reference="right_back_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <!--MIDDLE WHEELS -->
 
@@ -234,6 +261,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="left_middle_diagonal">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="right_middle_diagonal_joint" type="fixed">
         <parent link="right_bar_chassis"/>
         <child link="right_middle_diagonal"/>
@@ -258,6 +289,10 @@
             <origin xyz="0 0 0.08255" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+    <gazebo reference="right_middle_diagonal">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <joint name="left_middle_balancer_joint" type="continuous">
         <parent link="left_middle_diagonal"/>
@@ -285,6 +320,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="left_middle_balancer">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="right_middle_balancer_joint" type="continuous">
         <parent link="right_middle_diagonal"/>
         <child link="right_middle_balancer"/>
@@ -310,6 +349,10 @@
             <origin xyz="-0.00635 0 0" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+    <gazebo reference="right_middle_balancer">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <joint name="left_middle_wheel_joint" type= "continuous">
         <parent link="left_middle_balancer"/>
@@ -337,6 +380,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="left_middle_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <joint name="right_middle_wheel_joint" type= "continuous">
         <parent link="right_middle_balancer"/>
         <child link="right_middle_wheel"/>
@@ -362,6 +409,10 @@
             <origin xyz="0 0 0.0445" rpy = "0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+
+    <gazebo reference="right_middle_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!--FRONT WHEELS -->
 
@@ -390,6 +441,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="left_front_bar">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="right_front_bar_joint" type= "fixed">
         <parent link="right_middle_balancer"/>
         <child link="right_front_bar"/>
@@ -414,6 +469,10 @@
             <origin xyz="0.066675 0 0" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+    <gazebo reference="right_front_bar">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <joint name="left_front_corner_motor_joint" type="continuous">
         <parent link="left_front_bar"/>
@@ -441,6 +500,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="left_front_corner_motor">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <joint name="right_front_corner_motor_joint" type="continuous">
         <parent link="right_front_bar"/>
         <child link="right_front_corner_motor"/>
@@ -467,6 +530,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="right_front_corner_motor">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <joint name="left_front_wheel_joint" type= "continuous">
         <parent link="left_front_corner_motor"/>
         <child link="left_front_wheel"/>
@@ -491,6 +558,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <joint name="right_front_wheel_joint" type= "continuous">
         <parent link="right_front_corner_motor"/>
         <child link="right_front_wheel"/>
@@ -514,6 +585,10 @@
             <origin xyz="0 0 0" rpy = "0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
 
 
 
